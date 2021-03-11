@@ -1,12 +1,3 @@
-ext {
-    // Logging
-    slf4jVersion = '1.7.30'
-    logbackVersion = '1.2.3'
-
-    // Apache Poi
-    apachePoiVersion = '5.0.0'
-}
-
 subprojects {
     apply plugin: 'groovy'
 
@@ -16,14 +7,9 @@ subprojects {
     }
 
     dependencies {
-        // Slf4j & Logback
-        implementation "org.slf4j:slf4j-api:$slf4jVersion"
-        implementation "ch.qos.logback:logback-core:$logbackVersion"
-        implementation "ch.qos.logback:logback-classic:$logbackVersion"
-
         // Apache Poi
-        implementation "org.apache.poi:poi:$apachePoiVersion"
-        implementation "org.apache.poi:poi-ooxml:$apachePoiVersion"
+        implementation "org.apache.poi:poi:5.0.0"
+        implementation "org.apache.poi:poi-ooxml:5.0.0"
     }
 
     tasks.withType(Test) {
