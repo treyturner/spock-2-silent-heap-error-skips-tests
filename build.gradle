@@ -1,0 +1,61 @@
+plugins {
+    id 'idea'
+    id 'groovy'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    // For testing Spock 2 with Groovy 3
+//    groovyVersion = '3.0.7'
+//    spockVersion = '2.0-M4-groovy-3.0'
+
+    // For testing Spock 1.3 with Groovy 2
+    groovyVersion = '2.5.14'
+    spockVersion = '1.3-groovy-2.5'
+
+    // Logging
+    slf4jVersion = '1.7.30'
+    logbackVersion = '1.2.3'
+
+    // Apache POI
+    apachePoiVersion = '5.0.0'
+}
+
+dependencies {
+    // Groovy
+    implementation "org.codehaus.groovy:groovy:$groovyVersion"
+
+    // Slf4j & Logback
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+    implementation "ch.qos.logback:logback-core:$logbackVersion"
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+
+    // Spock
+    implementation "org.spockframework:spock-core:$spockVersion"
+
+    // Excel
+    implementation "org.apache.poi:poi:$apachePoiVersion"
+    implementation "org.apache.poi:poi-ooxml:$apachePoiVersion"
+}
+
+tasks.withType(Test) {
+    // Setting the heap size resolves the heap error which is visible with Spock 1.3,
+    // but not reported by Spock 2
+    maxHeapSize = "768m"
+
+    // Needed for Spock 2, must be commented out for Spock 1.3
+//    useJUnitPlatform()
+
+    // Log these test events to console
+    testLogging { events "started", "skipped", "passed", "failed", "standardOut" }
+
+    // Always run tests
+    outputs.upToDateWhen { false }
+
+    reports.junitXml.destination(new File("$buildDir/reports/junit"))
+    reports.html.destination(new File("$buildDir/reports/gradle"))
+}

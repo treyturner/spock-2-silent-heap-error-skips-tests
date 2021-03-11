@@ -1,0 +1,3 @@
+rootProject.name = 'poi-tests'
+enableFeaturePreview('GROOVY_COMPILATION_AVOIDANCE')
+startParameter.continueOnFailure = true
