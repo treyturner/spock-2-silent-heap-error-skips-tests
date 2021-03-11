@@ -1,16 +1,16 @@
 import spock.lang.*
 import org.apache.poi.ss.usermodel.WorkbookFactory
 
-class InsideSpock extends Specification {
+class InsideSpock13 extends Specification {
 
     def "first feature (runs)"() {
         expect:
         true
     }
 
-    def "should open workbook"() {
+    def "should open workbook (throws heap error)"() {
         given:
-        File file = new File('debug.xlsx')
+        File file = new File('../example.xlsx')
 
         expect:
         println "Creating workbook object"
@@ -21,7 +21,7 @@ class InsideSpock extends Specification {
         workbook.close()
     }
 
-    def "third feature (doesn't run?)"() {
+    def "third feature (runs)"() {
         expect:
         true
     }

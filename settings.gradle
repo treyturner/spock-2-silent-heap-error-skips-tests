@@ -1,3 +1,6 @@
-rootProject.name = 'poi-tests'
+rootProject.name = 'spock-2-silent-heap-error-skips-tests'
 enableFeaturePreview('GROOVY_COMPILATION_AVOIDANCE')
 startParameter.continueOnFailure = true
+
+include 'spock-1.3'
+include 'spock-2.0'
